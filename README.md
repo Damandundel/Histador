@@ -1,26 +1,13 @@
-# Histador
-Основни механики (Triviador + Duolingo)
-
-Уроци и Тестове: Ежедневни кратки уроци с нови знания и изпити за преминаване в следващото ниво.
-
-Карта и Дуели: Постепенно разкриване на територии. Дуели с други играчи за припокриващи се зони (напр. базирани на реални исторически войни).
-
-Жокери: Подсказки, които се купуват/активират чрез "въпросителни знаци".
-
-Ангажираност и Социални функции
-
-Мотивация: Ежедневни предизвикателства (daily challenges) и streak с награди.
-
-Съревнование: Класации (leaderboard), постижения (achievements) и директно сравняване на статистики с приятели.
-
-Образование: Случайни интересни факти и база данни с линкове, документи и реални архиви.
-
-Рангове и Аватари
-
-Йерархия: Peasant ➔ Soldier ➔ General ➔ King/Queen ➔ God/Goddess. (Скрит ранг Dictator/"Чичо Ади" само за админи).
-
-Визуална прогресия: Аватарите зависят от ранга и streak-а.
-
-Мъжки персонажи: Leonidas, Caesar, Napoleon, Alexander the Great, Genghis Khan.
-
-Женски персонажи: Princess Diana, Cleopatra, Pocahontas, Helen of Troy, Aphrodite.
+ # Histador 
+— План за приложението / App Plan
+Oct 9, 2026 · @Petar
+Преглед / Overview
+BG: Histador е историческа образователна игра, която съчетава ежедневните навици на Duolingo (кратки уроци, streak) със завладяването на територии от Triviador (карта, дуели). Играчът учи история, за да разширява империята си. Целева аудитория: ученици, студенти и любители на историята на възраст 14+. Приложението е двуезично (български и английски) от първия ден.
+EN: Histador is an educational history game that blends Duolingo's daily habit loop (short lessons, streaks) with Triviador's territory conquest (map, duels). Players learn history to grow their empire. Target audience: students and history enthusiasts aged 14+. The app is bilingual (Bulgarian and English) from day one.
+Основен цикъл / Core loop:
+1. Урок (3-5 мин.) / Short lesson (3-5 min)
+2. Тест за ниво / Level exam
+3. Нови територии на картата / New territories revealed on the map
+4. Дуели за спорни зони / Duels for overlapping zones
+5. XP, ранг и награди / XP, rank and rewards
+6. Връщане утре заради streak / Return tomorrow for the streak
