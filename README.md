@@ -23,4 +23,4 @@
 
 Мъжки персонажи: Leonidas, Caesar, Napoleon, Alexander the Great, Genghis Khan.
 
-Женски персонажи: Princess Diana, Cleopatra, Pocahont
+Женски персонажи: Princess Diana, Cleopatra, Pocahontas, Helen of Troy, Aphrodite.
