@@ -1,0 +1,103 @@
+@model ProfileViewModel
+@{
+    ViewData["Title"] = Model.IsOwnProfile ? T("your_profile") : Model.DisplayName;
+}
+
+<style>
+    .profile-card { max-width: 720px; margin: 0 auto; }
+    .profile-icon { width: 88px; height: 88px; border-radius: 50%; background: #2F6BC4; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 700; flex: none; }
+    .profile-stat { background: #f6f7f9; border-radius: 12px; padding: 14px 16px; }
+    .profile-stat .value { font-size: 24px; font-weight: 700; }
+    .profile-stat .label { font-size: 13px; color: #555; }
+    .mini-map polygon { stroke: #fff; stroke-width: 1.5; }
+    .mini-map .owned { fill: #2F6BC4; }
+    .mini-map .contested { fill: #E2B04A; }
+    .mini-map .discovered { fill: #9DB3D1; }
+    .mini-map .fog { fill: #4A5163; }
+    .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; }
+</style>
+
+<div class="profile-card">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <div class="profile-icon" role="img" aria-label="@Model.DisplayName">@Model.Initials</div>
+        <div>
+            <h1 class="h3 mb-1">
+                @Model.DisplayName
+                @if (Model.IsAdmin)
+                {
+                    <span class="badge bg-danger align-middle ms-1">@T("admin")</span>
+                }
+            </h1>
+            <div class="text-muted">@T("level", Model.Level) · @T("xp", Model.Xp)</div>
+        </div>
+    </div>
+
+    @if (!Model.IsOwnProfile)
+    {
+        <div class="d-flex gap-2 mb-4">
+            <button type="button" class="btn btn-outline-primary" disabled title="@T("coming_soon")">@T("add_friend")</button>
+            <button type="button" class="btn btn-primary" disabled title="@T("coming_soon")">@T("challenge")</button>
+        </div>
+    }
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <div class="profile-stat h-100">
+                <div class="value">@T("world_discovered", Model.WorldDiscoveredPercent)</div>
+                <svg class="mini-map mt-2" width="@Model.MiniMap.Width" height="@Model.MiniMap.Height"
+                     viewBox="0 0 @Model.MiniMap.Width @Model.MiniMap.Height" role="img" aria-label="@T("mini_map")">
+                    @foreach (var hex in Model.MiniMap.Hexes)
+                    {
+                        <polygon class="@hex.State" points="@hex.Points"><title>@hex.Name</title></polygon>
+                    }
+                </svg>
+                <div class="small text-muted mt-2">
+                    <span class="me-2"><span class="legend-dot" style="background:#2F6BC4"></span>@T("map_owned")</span>
+                    <span class="me-2"><span class="legend-dot" style="background:#E2B04A"></span>@T("map_contested")</span>
+                    <span class="me-2"><span class="legend-dot" style="background:#9DB3D1"></span>@T("map_discovered")</span>
+                    <span><span class="legend-dot" style="background:#4A5163"></span>@T("map_fog")</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="profile-stat">
+                        <div class="value">@(Model.Rank ?? T("unranked"))</div>
+                        <div class="label">@T("rank")</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="profile-stat">
+                        <div class="value">@Model.Mmr</div>
+                        <div class="label">@T("mmr")</div>
+                    </div>
+                </div>
+                @if (Model.IsOwnProfile && Model.HintPoints != null)
+                {
+                    <div class="col-12">
+                        <div class="profile-stat">
+                            <div class="value">@Model.HintPoints</div>
+                            <div class="label">@T("hint_points")</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="profile-stat"><div class="value">@Model.LessonsPassed</div><div class="label">@T("lessons_passed")</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat"><div class="value">@Model.PerfectQuizzes</div><div class="label">@T("perfect_quizzes")</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat"><div class="value">@Model.DuelsWon</div><div class="label">@T("duels_won")</div></div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat"><div class="value">@Model.DuelsLost</div><div class="label">@T("duels_lost")</div></div>
+        </div>
+    </div>
+</div>
