@@ -45,6 +45,22 @@ Then open https://localhost:7170. In Visual Studio, you can open `Histador.sln` 
   dotnet user-secrets set "Some:Key" "value"
   ```
 
+### Accounts and the admin account
+
+- Anyone can register at `/Account/Register`. New accounts get the **Player** role.
+- Every page requires login, except the landing page, login, register and password reset. To make a page public, put `[AllowAnonymous]` on its controller or action.
+- To get an **Admin** account locally, set these user-secrets once, then start the app. The admin is created on startup if it doesn't exist yet.
+
+  ```bash
+  dotnet user-secrets set "AdminSeed:Email" "admin@histador.local"
+  dotnet user-secrets set "AdminSeed:Password" "<a strong password>"
+  dotnet user-secrets set "AdminSeed:DisplayName" "Herodotus"
+  ```
+
+- To protect admin-only pages, use `[Authorize(Roles = Roles.Admin)]`. Players who open them get a 403.
+- In development, emails such as password-reset links aren't sent. They're written to the console log, so look for `EMAIL to …` in the `dotnet run` output.
+- The app applies pending migrations on startup, so `dotnet ef database update` is optional once accounts exist.
+
 ## Tests
 
 ```bash
