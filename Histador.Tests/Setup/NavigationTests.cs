@@ -15,7 +15,7 @@ public class NavigationTests : IClassFixture<HistadorAppFactory>
     }
 
     public static readonly TheoryData<string> Sections = new() { "/Map", "/Lessons", "/Random", "/Duels", "/Profile" };
-    public static readonly TheoryData<string> PlaceholderSections = new() { "/Lessons", "/Random", "/Duels", "/Profile" };
+    public static readonly TheoryData<string> PlaceholderSections = new() { "/Lessons", "/Random", "/Duels" };
 
     [Theory]
     [MemberData(nameof(PlaceholderSections))]
