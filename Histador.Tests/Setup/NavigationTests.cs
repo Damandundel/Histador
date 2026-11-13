@@ -7,10 +7,15 @@ public class NavigationTests : IClassFixture<HistadorAppFactory>
 {
     private readonly HttpClient _client;
 
-    public NavigationTests(HistadorAppFactory app) => _client = app.CreateClient();
+    public NavigationTests(HistadorAppFactory app)
+    {
+        _client = app.CreateClient();
+        _client.DefaultRequestHeaders.Add(TestAuthHandler.UserHeader, "player-1");
+        _client.DefaultRequestHeaders.Add(TestAuthHandler.RolesHeader, "Player");
+    }
 
     public static readonly TheoryData<string> Sections = new() { "/Map", "/Lessons", "/Random", "/Duels", "/Profile" };
-    public static readonly TheoryData<string> PlaceholderSections = new() { "/Lessons", "/Random", "/Duels", "/Profile" };
+    public static readonly TheoryData<string> PlaceholderSections = new() { "/Lessons", "/Random", "/Duels" };
 
     [Theory]
     [MemberData(nameof(PlaceholderSections))]

@@ -1,0 +1,91 @@
+@model ProfileViewModel
+@{
+    ViewData["Title"] = Model.IsOwnProfile ? "Your profile" : Model.DisplayName;
+}
+
+<div class="profile">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <div class="profile-icon" role="img" aria-label="Player icon">@Model.Initials</div>
+        <div>
+            <h1 class="h3 mb-1">
+                @Model.DisplayName
+                @if (Model.IsAdmin)
+                {
+                    <span class="badge bg-danger align-middle ms-1">Admin</span>
+                }
+            </h1>
+            <div class="text-muted">Level @Model.Level · @Model.WorldPercent.ToString("0.0")% of the world discovered</div>
+        </div>
+    </div>
+
+    @if (!Model.IsOwnProfile)
+    {
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <button type="button" class="btn btn-outline-primary" disabled title="Coming soon">Add friend</button>
+            <button type="button" class="btn btn-primary" disabled title="Coming soon">Challenge to duel</button>
+        </div>
+    }
+
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <div class="profile-stat h-100">
+                <div class="profile-stat-label mb-2">World map</div>
+                <div class="profile-minimap" role="img" aria-label="Mini-map of discovered territory">
+                    <span>@Model.WorldPercent.ToString("0.0")% discovered</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="profile-stat">
+                        <div class="profile-stat-value">@(Model.Rank ?? "Unranked")</div>
+                        <div class="profile-stat-label">Rank</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="profile-stat">
+                        <div class="profile-stat-value">@Model.Mmr</div>
+                        <div class="profile-stat-label">MMR</div>
+                    </div>
+                </div>
+                @if (Model.IsOwnProfile && Model.HintPoints is not null)
+                {
+                    <div class="col-12">
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">@Model.HintPoints</div>
+                            <div class="profile-stat-label">Hint points</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-6 col-md-3">
+            <div class="profile-stat">
+                <div class="profile-stat-value">@(Model.LessonsPassed?.ToString() ?? "—")</div>
+                <div class="profile-stat-label">Lessons passed</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat">
+                <div class="profile-stat-value">@(Model.PerfectQuizzes?.ToString() ?? "—")</div>
+                <div class="profile-stat-label">Perfect quizzes</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat">
+                <div class="profile-stat-value">@(Model.DuelsWon?.ToString() ?? "—")</div>
+                <div class="profile-stat-label">Duels won</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="profile-stat">
+                <div class="profile-stat-value">@(Model.DuelsLost?.ToString() ?? "—")</div>
+                <div class="profile-stat-label">Duels lost</div>
+            </div>
+        </div>
+    </div>
+</div>
