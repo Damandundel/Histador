@@ -20,3 +20,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* Accounts */
+.auth-card {
+  max-width: 440px;
+  margin: 2rem auto;
+}
+
+.landing {
+  padding: 3rem 0 2rem;
+}
+
+.landing .lead {
+  max-width: 640px;
+}
