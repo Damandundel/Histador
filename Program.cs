@@ -15,6 +15,15 @@ namespace Histador
 
             builder.Services.AddControllersWithViews();
 
+            // Error logging and request telemetry. Turns on when APPLICATIONINSIGHTS_CONNECTION_STRING
+            // is configured (it is on Azure App Service); locally it stays off.
+            builder.Services.AddApplicationInsightsTelemetry();
+
+            // GET /health: 200 "Healthy" when the app is up and can reach the database.
+            // Azure App Service pings it (see infra/main.bicep) and so does the deploy workflow.
+            builder.Services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>("database");
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,6 +40,8 @@ namespace Histador
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.MapHealthChecks("/health");
 
             app.MapControllerRoute(
                 name: "default",
