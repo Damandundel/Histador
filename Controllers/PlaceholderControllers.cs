@@ -19,9 +19,4 @@ namespace Histador.Controllers
     {
         public IActionResult Index() => View("ComingSoon", "Duels");
     }
-
-    public class ProfileController : Controller
-    {
-        public IActionResult Index() => View("ComingSoon", "Profile");
-    }
 }
