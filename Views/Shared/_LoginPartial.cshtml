@@ -1,6 +1,6 @@
 @if (User.Identity?.IsAuthenticated == true)
 {
-    <ul class="navbar-nav align-items-sm-center">
+    <ul class="navbar-nav align-items-lg-center">
         @if (User.IsInRole(Roles.Admin))
         {
             <li class="nav-item">
@@ -9,7 +9,7 @@
         }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Account" asp-action="ChangePassword" title="Account settings">
-                @User.FindFirst(HistadorClaimsPrincipalFactory.DisplayNameClaim)?.Value
+                @(User.FindFirst(HistadorClaimsPrincipalFactory.DisplayNameClaim)?.Value ?? "Account")
             </a>
         </li>
         <li class="nav-item">
@@ -26,7 +26,7 @@ else
             <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Log in</a>
         </li>
         <li class="nav-item">
-            <a class="btn btn-primary btn-sm ms-sm-2 my-1" asp-controller="Account" asp-action="Register">Sign up</a>
+            <a class="btn btn-primary btn-sm ms-lg-2 my-1" asp-controller="Account" asp-action="Register">Sign up</a>
         </li>
     </ul>
 }

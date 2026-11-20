@@ -1,15 +1,115 @@
+/* 16px everywhere: the old 14px phone size made small text (e.g. form hints, footer) hard to read */
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+  font-size: 16px;
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* ---- Accessibility basics (launch polish, #32) ---- */
+
+/* Clearly visible keyboard focus on everything focusable */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+.country:focus-visible {
+  outline: 3px solid #1b6ec2;
+  outline-offset: 2px;
+}
+
+/* The <main> target of the skip link shouldn't show a ring when focused programmatically */
+main:focus {
+  outline: none;
+}
+
+/* "Skip to main content": hidden until a keyboard user tabs to it */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -100px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background: #1b6ec2;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 8px;
+  color: #fff;
+}
+
+/* Minimum 44px tap targets for buttons, nav links, form fields and footer links */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.navbar-toggler,
+.footer a {
+  min-height: 44px;
+}
+
+.btn,
+.nav-link,
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  justify-content: flex-start;
+}
+
+.navbar-brand {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Checkboxes: the whole row (box + label) is the 44px tap target */
+.form-check {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-check .form-check-input {
+  width: 1.4em;
+  height: 1.4em;
+  margin-top: 0;
+}
+
+.form-check .form-check-label {
+  padding: 10px 0;
+}
+
+/* Small helper text stays readable */
+.small,
+small,
+.form-text {
+  font-size: 0.875rem;
+}
+
+/* Bootstrap's grey (#6c757d) drops below 4.5:1 on light grey cards; use a darker grey there */
+.profile-stat .text-muted,
+.card .text-muted {
+  color: #565e66 !important;
+}
+
+/* Respect the OS "reduce motion" setting everywhere */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 html {
@@ -79,4 +179,9 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+}
+
+/* Nav items never wrap mid-label (e.g. "Log out") */
+.navbar .nav-link {
+  white-space: nowrap;
 }
