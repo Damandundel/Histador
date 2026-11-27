@@ -185,3 +185,9 @@ body {
 .navbar .nav-link {
   white-space: nowrap;
 }
+
+/* Feedback form */
+.feedback-counter {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
