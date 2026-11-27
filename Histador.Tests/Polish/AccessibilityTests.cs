@@ -20,7 +20,7 @@ public class AccessibilityTests : IClassFixture<HistadorAppFactory>
 
     public static readonly TheoryData<string> PublicPages = new()
     {
-        "/", "/Home/Privacy", "/Account/Login", "/Account/Register", "/Account/ForgotPassword",
+        "/", "/Home/Privacy", "/Account/Login", "/Account/Register", "/Account/ForgotPassword", "/Feedback",
     };
 
     public static readonly TheoryData<string> PlayerPages = new()
@@ -31,7 +31,7 @@ public class AccessibilityTests : IClassFixture<HistadorAppFactory>
     public static readonly TheoryData<string> AllPages = new()
     {
         "/", "/Home/Privacy", "/Account/Login", "/Account/Register", "/Account/ForgotPassword",
-        "/Map", "/Profile", "/Lessons", "/Random", "/Duels", "/Account/ChangePassword", "/Admin",
+        "/Map", "/Profile", "/Lessons", "/Random", "/Duels", "/Account/ChangePassword", "/Admin", "/Feedback",
     };
 
     private string? _playerId;
