@@ -19,6 +19,7 @@ namespace Histador
             builder.Services.AddHistadorIdentity();
             builder.Services.AddSingleton<IEmailSender, ConsoleEmailSender>();
             builder.Services.AddScoped<ProfileService>();
+            builder.Services.AddScoped<IFeedbackService, FeedbackService>();
 
             // Everything requires login unless a controller/action is marked [AllowAnonymous].
             builder.Services.AddAuthorization(options =>

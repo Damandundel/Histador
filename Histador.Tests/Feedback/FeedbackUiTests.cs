@@ -1,7 +1,7 @@
 using System.Net;
 using Histador.Tests.Support;
 
-namespace Histador.Tests.Feedback;
+namespace Histador.Tests.FeedbackUi;
 
 public class FeedbackUiTests : IClassFixture<HistadorAppFactory>
 {
