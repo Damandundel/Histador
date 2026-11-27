@@ -10,6 +10,8 @@ namespace Histador.Data
         {
         }
 
+        public DbSet<Feedback> Feedback => Set<Feedback>();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -20,6 +22,14 @@ namespace Histador.Data
                 user.HasIndex(u => u.DisplayName).IsUnique();
                 user.Property(u => u.PreferredLanguage).HasMaxLength(2).IsRequired();
                 user.Property(u => u.Mmr).HasDefaultValue(ApplicationUser.StartingMmr);
+            });
+
+            builder.Entity<Feedback>(feedback =>
+            {
+                feedback.Property(f => f.Type).IsRequired();
+                feedback.Property(f => f.Content).HasMaxLength(Models.Feedback.ContentMaxLength).IsRequired();
+                feedback.Property(f => f.CreatedAt).IsRequired();
+                feedback.HasIndex(f => f.CreatedAt);
             });
         }
     }
